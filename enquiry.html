@@ -280,6 +280,13 @@
                             <div class=""><label class="block font-label-bold text-label-bold text-on-surface mb-2">Email Address</label><input id="main-email"
                                     class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-4 py-3 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none"
                                     placeholder="john@company.com" type="email" required></div>
+                            <div class=""><label class="block font-label-bold text-label-bold text-on-surface mb-2">Primary Product Interest</label><select id="main-product"
+                                    class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-4 py-3 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none appearance-none">
+                                    <option>Tata</option>
+                                    <option>Supreme</option>
+                                    <option>Maharastra Sealess</option>
+                                    <option>Others</option>
+                                </select></div>
                             <div class=""><label class="block font-label-bold text-label-bold text-on-surface mb-2">Message</label><textarea id="main-message"
                                     class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-4 py-3 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none resize-none"
                                     placeholder="Tell us more about your requirements..." rows="4" required></textarea></div>
@@ -301,7 +308,7 @@
                                             phone: document.getElementById('main-phone').value,
                                             email: document.getElementById('main-email').value,
                                             message: document.getElementById('main-message').value,
-                                            product: "General (Main Form)"
+                                            product: document.getElementById('main-product').value
                                         };
                                         
                                         fetch('/api/enquiries', {
@@ -311,7 +318,7 @@
                                         })
                                         .then(res => res.json())
                                         .then(data => {
-                                            const messageText = `*New Enquiry (Main)*\nName: ${newEq.name}\nPhone: ${newEq.phone}\nEmail: ${newEq.email}\nMessage: ${newEq.message}`;
+                                            const messageText = `*New Enquiry (Main)*\nName: ${newEq.name}\nPhone: ${newEq.phone}\nEmail: ${newEq.email}\nProduct: ${newEq.product}\nMessage: ${newEq.message}`;
                                             window.location.href = `https://wa.me/919831413090?text=${encodeURIComponent(messageText)}`;
                                             form.reset();
                                         })
