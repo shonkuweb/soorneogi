@@ -585,7 +585,7 @@
                         product: "Not specified (Popup)"
                     };
                     
-                    fetch('http://localhost:8080/api/enquiries', {
+                    fetch('/api/enquiries', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(newEq)
