@@ -1,0 +1,4 @@
+node_modules
+snc_database.sqlite
+.git
+.env

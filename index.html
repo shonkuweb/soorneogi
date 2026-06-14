@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" style="">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SNC | Premium Industrial Pipe Solutions</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#64748b",
+                        "on-primary-fixed": "#0f172a",
+                        "tertiary-fixed-dim": "#fcd34d",
+                        "surface-container-highest": "#f1f5f9",
+                        "tertiary-fixed": "#fde68a",
+                        "surface-bright": "#ffffff",
+                        "on-secondary-container": "#334155",
+                        "surface-container-high": "#f8fafc",
+                        "on-tertiary-fixed": "#451a03",
+                        "primary-fixed": "#e2e8f0",
+                        "error-container": "#ffdad6",
+                        "primary": "#0f172a",
+                        "primary-fixed-dim": "#cbd5e1",
+                        "on-surface": "#0f172a",
+                        "tertiary": "#f59e0b",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8fafc",
+                        "inverse-primary": "#cbd5e1",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0f172a",
+                        "primary-container": "#1e293b",
+                        "secondary": "#475569",
+                        "on-background": "#0f172a",
+                        "surface-variant": "#f1f5f9",
+                        "surface-tint": "#64748b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f8fafc",
+                        "on-tertiary-container": "#b45309",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#e2e8f0",
+                        "surface-container": "#f8fafc",
+                        "secondary-container": "#e2e8f0",
+                        "on-primary-fixed-variant": "#334155",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#fef3c7",
+                        "inverse-surface": "#1e293b",
+                        "on-tertiary-fixed-variant": "#78350f",
+                        "on-secondary-fixed-variant": "#475569",
+                        "outline": "#94a3b8",
+                        "outline-variant": "#cbd5e1",
+                        "secondary-fixed": "#f1f5f9",
+                        "secondary-fixed-dim": "#e2e8f0",
+                        "on-primary-container": "#64748b",
+                        "surface-container-low": "#ffffff",
+                        "inverse-on-surface": "#f8fafc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "1rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Outfit", "sans-serif"],
+                        "display-lg-mobile": ["Outfit", "sans-serif"],
+                        "headline-sm": ["Outfit", "sans-serif"],
+                        "headline-md": ["Outfit", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "label-bold": ["Inter", "sans-serif"],
+                        "caption": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 40px -15px rgba(0,0,0,0.05), 0 0 20px 0 rgba(0,0,0,0.02)',
+                        'premium-hover': '0 25px 50px -12px rgba(0,0,0,0.08), 0 0 25px 0 rgba(0,0,0,0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .premium-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05), 0 0 20px 0 rgba(0,0,0,0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .premium-shadow:hover {
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08), 0 0 25px 0 rgba(0,0,0,0.04);
+            transform: translateY(-4px);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .accent-border-top {
+            position: relative;
+        }
+
+        .accent-border-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, transparent);
+            transition: background 0.4s ease;
+        }
+
+        .accent-border-top:hover::before {
+            background: linear-gradient(90deg, #f59e0b, #ea580c);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        /* Stagger animations */
+        .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+
+        .hero-vignette::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.8) 100%);
+            pointer-events: none;
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+    </style>
+
+</head>
+
+<body
+    class="overflow-x-hidden bg-background text-on-background font-body-md text-body-md antialiased selection:bg-on-tertiary-container selection:text-white">
+    <!-- Header -->
+    <header
+        class="glass-panel fixed top-0 w-full z-50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:border-outline-variant/10 shadow-sm transition-transform duration-300"
+        id="main-header">
+        <div class="max-w-container-max mx-auto px-6 md:px-margin-desktop flex justify-between items-center h-20">
+            <!-- Brand -->
+            <a class="text-headline-sm font-headline-md font-bold tracking-tighter text-primary dark:text-primary-fixed flex items-center gap-2 group"
+                href="index.html"><img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF-XiQmcThBlT4IfVz-N2XrE1vE-m06Avgnz9149xtN-HUFEXWQ52qVnPxJR2ARytAErB7XGtlaXAqVsWovV8qCDr6U5Zu1F5qEu7fzfXWEm1iog_QbFicXOc2Rd-WwbQt0ojC2L9pcHVIKuQwdQF2gbxgrBdWfFgclSRLlx-UBCpLScDO3xNaY14MF9l5hiMqVy64nLFKfoS-LKm4nku3vN3mJVrm9pCBHNKSBYlBJLGYyYAzhighE4HJLtA4qqPMy0L7xDnBRVb3"
+                    alt="Soor Neogi Coomar Logo" class="h-12 w-auto object-contain">
+                Soor Neogi Coomar</a>
+            <!-- Navigation (Web) -->
+            <nav class="hidden md:flex items-center gap-8"><a
+                    class="font-label-bold text-label-bold text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-tertiary-container transition-colors duration-200"
+                    href="gallery.html">Gallery</a><a
+                    class="font-label-bold text-label-bold text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-tertiary-container transition-colors duration-200"
+                    href="achievements.html">Achievements</a><a
+                    class="font-label-bold text-label-bold text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-tertiary-container transition-colors duration-200"
+                    href="products.html">Products</a><a
+                    class="font-label-bold text-label-bold text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-tertiary-container transition-colors duration-200"
+                    href="about.html">About Us</a><a
+                    class="font-label-bold text-label-bold text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-tertiary-container transition-colors duration-200"
+                    href="clientele.html">Clientele</a></nav>
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <a href="admin.html" class="hidden md:flex font-label-bold text-sm text-slate-500 hover:text-amber-500 transition-colors">Admin</a>
+                <a href="enquiry.html"
+                    class="hidden md:flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white shadow-lg shadow-orange-500/30 border border-orange-500/50 px-6 py-2.5 rounded-DEFAULT font-label-bold text-label-bold hover:bg-opacity-90 transition-all scale-95 duration-150 active:opacity-80 shadow-lg">Enquiry
+                    Now<span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                <button class="md:hidden text-primary" id="mobile-menu-toggle" onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full'); document.body.classList.add('overflow-hidden');">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+            <div class="flex justify-between items-center p-6 border-b border-slate-100">
+                <span class="font-headline-sm font-bold text-primary">Menu</span>
+                <button id="close-mobile-menu" class="text-primary" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full'); document.body.classList.remove('overflow-hidden');">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col p-6 gap-6 overflow-y-auto">
+                <a href="index.html" class="font-label-bold text-lg text-secondary">Home</a>
+                <a href="gallery.html" class="font-label-bold text-lg text-secondary">Gallery</a>
+                <a href="achievements.html" class="font-label-bold text-lg text-secondary">Achievements</a>
+                <a href="products.html" class="font-label-bold text-lg text-secondary">Products</a>
+                <a href="about.html" class="font-label-bold text-lg text-secondary">About Us</a>
+                <a href="clientele.html" class="font-label-bold text-lg text-secondary">Clientele</a>
+                <a href="enquiry.html" class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-3 rounded text-center font-label-bold mt-4 shadow-lg shadow-orange-500/30">Enquiry Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section
+            class="relative w-full min-h-[100svh] md:min-h-[700px] md:h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900 pt-28 pb-12 md:py-0">
+            <div class="absolute inset-0 z-0 hero-vignette">
+                <img alt="Industrial Manufacturing Facility"
+                    class="w-full h-full object-cover opacity-50 mix-blend-overlay scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]"
+                    data-alt="A sweeping, cinematic view of a massive industrial pipe manufacturing facility. Rows of massive, gleaming steel pipes stretch into the distance under stark, cool-toned factory lighting. The scene is dominated by a strict Corporate Modern aesthetic, utilizing deep Primary Navy tones and sharp Steel Gray metallic surfaces. Subtle volumetric light filters from high ceiling windows, creating a sense of scale, precision, and technological advancement. The mood is authoritative and heavily engineered."
+                    src="images/hero_facility.png">
+            </div>
+            <div
+                class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col justify-between md:justify-center h-full gap-10 md:gap-16">
+                
+                <div class="max-w-4xl flex flex-col gap-6 md:gap-8 text-white mt-4 md:mt-0">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 glass-panel !bg-white/5 !border-white/10 backdrop-blur-md rounded-full w-fit shadow-2xl">
+                        <span class="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-amber-500"></span>
+                        </span>
+                        <span class="font-label-bold text-[10px] sm:text-xs md:text-sm text-slate-200 uppercase tracking-widest font-medium">ISO 9001:2015 Certified Manufacturing</span>
+                    </div>
+                    
+                    <h1
+                        class="font-display-lg text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-100 to-slate-400"><span data-cms-key="index_hero_title">Reliable Industrial <br class="hidden sm:block">Pipe Solutions</span></h1>
+                    
+                    <p class="font-body-lg text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl font-light leading-relaxed"><span data-cms-key="index_hero_subtitle">Engineered for extreme conditions. We manufacture and supply high-grade MS, GI, HDPE, and SS
+                        pipes for structural integrity and fluid dynamics across global infrastructure projects.</span></p>
+                    
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 mt-2">
+                        <a href="enquiry.html"
+                            class="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white shadow-[0_0_30px_rgba(245,158,11,0.3)] border border-orange-400/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-label-bold text-sm md:text-base tracking-wide hover:bg-opacity-90 transition-all flex items-center justify-center gap-3 hover:-translate-y-1">
+                            Request a Quote
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </a>
+                        <a href="#products"
+                            class="px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-label-bold text-sm md:text-base tracking-wide text-white border border-white/20 hover:bg-white/10 glass-panel !bg-transparent transition-all flex items-center justify-center gap-3 hover:-translate-y-1">
+                            Explore Products
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Premium Trust Indicators -->
+                <div class="w-full glass-panel !bg-white/5 !border-white/10 backdrop-blur-xl rounded-2xl p-5 sm:p-6 md:p-10 shadow-2xl mt-auto md:mt-0">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 divide-x-0 md:divide-x divide-white/10">
+                        <div class="flex flex-col gap-1 md:gap-2 relative md:px-6 first:pl-0 group">
+                            <span class="font-display-lg text-3xl sm:text-4xl md:text-5xl text-white font-light tabular-nums tracking-tight group-hover:text-amber-400 transition-colors duration-300">115+</span>
+                            <span class="font-caption text-[10px] sm:text-xs md:text-sm text-slate-400 uppercase tracking-[0.1em] sm:tracking-[0.15em] font-medium">Years Exp.</span>
+                        </div>
+                        <div class="flex flex-col gap-1 md:gap-2 relative md:px-6 group">
+                            <span class="font-display-lg text-3xl sm:text-4xl md:text-5xl text-white font-light tabular-nums tracking-tight group-hover:text-amber-400 transition-colors duration-300">250k+</span>
+                            <span class="font-caption text-[10px] sm:text-xs md:text-sm text-slate-400 uppercase tracking-[0.1em] sm:tracking-[0.15em] font-medium">Tons Delivered</span>
+                        </div>
+                        <div class="flex flex-col gap-1 md:gap-2 relative md:px-6 group">
+                            <span class="font-display-lg text-3xl sm:text-4xl md:text-5xl text-white font-light tabular-nums tracking-tight group-hover:text-amber-400 transition-colors duration-300">1,200+</span>
+                            <span class="font-caption text-[10px] sm:text-xs md:text-sm text-slate-400 uppercase tracking-[0.1em] sm:tracking-[0.15em] font-medium">Global Projects</span>
+                        </div>
+                        <div class="flex flex-col gap-1 md:gap-2 relative md:px-6 last:pr-0 group">
+                            <span class="font-display-lg text-3xl sm:text-4xl md:text-5xl text-white font-light tabular-nums tracking-tight group-hover:text-amber-400 transition-colors duration-300">100%</span>
+                            <span class="font-caption text-[10px] sm:text-xs md:text-sm text-slate-400 uppercase tracking-[0.1em] sm:tracking-[0.15em] font-medium">Quality Tested</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Product Categories -->
+        <section class="py-24 bg-surface" id="products">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                    <div class="max-w-2xl">
+                        <h2 class="font-headline-md text-headline-md text-on-surface mb-4">Engineered Pipe Categories
+                        </h2>
+                        <p class="font-body-md text-body-md text-secondary">Precision-manufactured conduits for diverse
+                            industrial applications, built to exact international specifications.</p>
+                    </div>
+                    <a class="flex items-center gap-2 font-label-bold text-label-bold text-amber-500 hover:underline group"
+                        href="#">
+                        Download Full Catalog
+                        <span
+                            class="material-symbols-outlined group-hover:translate-x-1 transition-transform">download</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- MS Pipes -->
+                    <div
+                        class="group bg-white border border-slate-200/60 rounded-lg overflow-hidden premium-shadow fade-in-up accent-border-top transition-transform hover:-translate-y-1">
+                        <div class="h-48 bg-slate-50 relative overflow-hidden">
+                            <img alt="Mild Steel Pipes"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="A close-up, high-resolution shot of stacked mild steel pipes in an industrial warehouse. The lighting is crisp and cool, reflecting off the dark, heavy metallic surfaces. The composition emphasizes structural weight and precise manufacturing tolerances, fitting a Corporate Modern B2B aesthetic. The background is a shallow depth of field blur of towering warehouse racks."
+                                src="images/mild_steel_pipes.png">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-label-bold text-primary">
+                                IS 1239</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Mild Steel (MS) Pipes
+                            </h3>
+                            <p class="font-body-md text-body-md text-secondary mb-4 line-clamp-2">High-strength
+                                structural pipes suitable for fabrication, structural applications, and low-pressure
+                                fluid transmission.</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <a class="inline-flex items-center gap-1 font-label-bold text-label-bold text-primary group-hover:text-amber-500 transition-colors"
+                                    href="#">
+                                    View Specs <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+                                </a>
+                                <a href="enquiry.html" class="inline-flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded text-sm font-label-bold hover:from-amber-400 hover:to-orange-500 transition-colors shadow-md shadow-orange-500/20">
+                                    Get a Quote
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- GI Pipes -->
+                    <div
+                        class="group bg-white border border-slate-200/60 rounded-lg overflow-hidden premium-shadow fade-in-up accent-border-top transition-transform hover:-translate-y-1">
+                        <div class="h-48 bg-slate-50 relative overflow-hidden">
+                            <img alt="Galvanized Iron Pipes"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Stacks of bright, zinc-coated Galvanized Iron (GI) pipes outdoors under natural sunlight. The metallic surfaces gleam brilliantly, highlighting the anti-corrosive coating. The scene conveys durability and weather resistance, aligned with a precision engineering brand. The color palette features sharp silvers against a neutral, concrete-toned background."
+                                src="images/galvanized_pipes.png">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-label-bold text-primary">
+                                Anti-Corrosive</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Galvanized Iron (GI)
+                                Pipes</h3>
+                            <p class="font-body-md text-body-md text-secondary mb-4 line-clamp-2">Zinc-coated steel
+                                pipes offering superior corrosion resistance for water supply and outdoor structural
+                                framing.</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <a class="inline-flex items-center gap-1 font-label-bold text-label-bold text-primary group-hover:text-amber-500 transition-colors"
+                                    href="#">
+                                    View Specs <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+                                </a>
+                                <a href="enquiry.html" class="inline-flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded text-sm font-label-bold hover:from-amber-400 hover:to-orange-500 transition-colors shadow-md shadow-orange-500/20">
+                                    Get a Quote
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HDPE Pipes -->
+                    <div
+                        class="group bg-white border border-slate-200/60 rounded-lg overflow-hidden premium-shadow fade-in-up accent-border-top transition-transform hover:-translate-y-1">
+                        <div class="h-48 bg-slate-50 relative overflow-hidden">
+                            <img alt="HDPE Pipes"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Large-diameter, thick-walled black HDPE pipes with prominent yellow or blue identification stripes, resting on an industrial site. The image has a clean, functional aesthetic with deep blacks contrasting against vibrant accent colors. The lighting is even, emphasizing the smooth, durable polymer surface of the pipes intended for heavy-duty fluid transport."
+                                src="images/hdpe_pipes.png">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-label-bold text-primary">
+                                IS 4984</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">HDPE Pipes</h3>
+                            <p class="font-body-md text-body-md text-secondary mb-4 line-clamp-2">High-Density
+                                Polyethylene pipes for municipal water supply, chemical transport, and submerged marine
+                                applications.</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <a class="inline-flex items-center gap-1 font-label-bold text-label-bold text-primary group-hover:text-amber-500 transition-colors"
+                                    href="#">
+                                    View Specs <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+                                </a>
+                                <a href="enquiry.html" class="inline-flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded text-sm font-label-bold hover:from-amber-400 hover:to-orange-500 transition-colors shadow-md shadow-orange-500/20">
+                                    Get a Quote
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Company Overview & Stats -->
+        <section class="py-24 bg-white" id="about">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative">
+                        <div class="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200/60 premium-shadow fade-in-up">
+                            <img alt="Manufacturing Facility" class="w-full h-full object-cover"
+                                data-alt="An expansive interior shot of a highly automated, pristine manufacturing floor. Massive robotic arms and precision milling machines operate under bright, uniform LED lighting. The environment is sterile, technical, and hyper-modern, predominantly featuring Steel Gray and Primary Navy tones with subtle Orange safety accents. The image conveys immense scale, technological superiority, and strict quality control."
+                                src="images/hero_facility.png">
+                        </div>
+                        <div class="absolute -bottom-8 -right-8 glass-panel p-6 rounded-lg w-64 hidden md:block">
+                            <div class="font-headline-md text-headline-md text-primary font-bold mb-1">ISO 9001</div>
+                            <div class="font-body-md text-body-md text-secondary">Certified Manufacturing Processes
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span
+                            class="font-label-bold text-label-bold text-amber-500 uppercase tracking-wider mb-2 block">Company
+                            Overview</span>
+                        <h2 class="font-headline-md text-headline-md text-on-surface mb-6">A Century of Excellence in the Pipe Industry</h2>
+                        <p class="font-body-lg text-body-lg text-secondary mb-6">
+                            SOOR NEOGI COOMAR &amp; CO PRIVATE LIMITED (SNC) is a Human Quality Development and Customer Centric Organization where Quality, Reliability and Customer Satisfaction is not just a business process but a reflection of every employee.
+                        </p>
+                        <p class="font-body-md text-body-md text-secondary mb-8">
+                            Started in the year 1908, we have been serving the Pipe Industry for more than a century. Even though it had been an old traditional business, SNC has taken up the challenge of transforming itself into a modern organization guided by globalization and modern business strategies.
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-amber-500 mt-1"
+                                    style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+                                <div>
+                                    <strong class="block font-label-bold text-label-bold text-on-surface">Critical Applications</strong>
+                                    <span class="font-body-md text-body-md text-secondary">Extensively used in Defence, Nuclear Power, Space, Petroleum and Petrochemical Industries.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-amber-500 mt-1"
+                                    style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+                                <div>
+                                    <strong class="block font-label-bold text-label-bold text-on-surface">Authorized Distributors</strong>
+                                    <span class="font-body-md text-body-md text-secondary">Authorized distributors of TATA Black pipes, PVC pipes and fittings of Supreme Industries Ltd.</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="about.html"
+                            class="inline-block text-center bg-transparent border-2 border-slate-900 text-slate-900 px-6 py-3 rounded-DEFAULT font-label-bold text-label-bold hover:bg-gradient-to-br from-slate-900 to-slate-800 hover:text-white transition-colors duration-300">
+                            Read Corporate Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    <!-- Footer -->
+    <footer
+        class="bg-[#1c2434] text-slate-300 w-full py-16 border-t border-[#1c2434] flat no shadows">
+        <div class="max-w-container-max mx-auto px-6 md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-gutter gap-gutter">
+            <div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+                <a class="font-headline-sm text-headline-sm font-black text-white flex items-center gap-2"
+                    href="#"><img
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF-XiQmcThBlT4IfVz-N2XrE1vE-m06Avgnz9149xtN-HUFEXWQ52qVnPxJR2ARytAErB7XGtlaXAqVsWovV8qCDr6U5Zu1F5qEu7fzfXWEm1iog_QbFicXOc2Rd-WwbQt0ojC2L9pcHVIKuQwdQF2gbxgrBdWfFgclSRLlx-UBCpLScDO3xNaY14MF9l5hiMqVy64nLFKfoS-LKm4nku3vN3mJVrm9pCBHNKSBYlBJLGYyYAzhighE4HJLtA4qqPMy0L7xDnBRVb3"
+                        alt="Soor Neogi Coomar Logo" class="h-12 w-auto object-contain">
+                    Soor Neogi Coomar</a>
+                <p data-cms-key="home_hero_subtitle" class="font-body-md text-body-md text-slate-300 max-w-xs">
+                    Precision engineered industrial pipe solutions for global infrastructure and heavy manufacturing
+                    sectors.
+                </p>
+                <div class="mt-4 flex gap-4">
+                    <a class="text-slate-400 hover:text-amber-500 transition-colors" href="#"><span
+                            class="material-symbols-outlined">language</span></a>
+                    <a class="text-slate-400 hover:text-amber-500 transition-colors" href="#"><span
+                            class="material-symbols-outlined">business</span></a>
+                </div>
+            </div>
+            <div class="col-span-1 flex flex-col gap-3">
+                <h4 class="font-label-bold text-label-bold text-white font-bold mb-2">Company
+                </h4>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">About Us</a>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Career</a>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">News &amp; Press</a>
+            </div>
+            <div class="col-span-1 flex flex-col gap-3">
+                <h4 class="font-label-bold text-label-bold text-white font-bold mb-2">
+                    Solutions</h4>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Infrastructure</a>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Energy</a>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Water Management</a>
+            </div>
+            <div class="col-span-1 flex flex-col gap-3">
+                <h4 class="font-label-bold text-label-bold text-white font-bold mb-2">Legal
+                    &amp; Support</h4>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Technical Support</a>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Privacy Policy</a>
+                <a class="font-body-md text-body-md text-slate-400 hover:underline hover:text-white transition-all opacity-90 hover:opacity-100"
+                    href="#">Terms of Service</a>
+                <a class="font-body-md text-body-md text-amber-500 hover:text-amber-400 hover:underline transition-all mt-2 flex items-center gap-2"
+                    href="admin.html"><span class="material-symbols-outlined text-[18px]">lock</span> Admin Login</a>
+            </div>
+        </div>
+        <div
+            class="max-w-container-max mx-auto px-6 md:px-margin-desktop mt-8 md:mt-12 pt-8 border-t border-[#2d3748] text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-caption text-caption text-slate-400">
+                © 2024 SOOR NEOGI COOMAR & CO PRIVATE LIMITED. All rights reserved. ISO 9001:2015 Certified.
+            </p>
+            <div class="flex gap-2">
+                <span
+                    class="inline-flex items-center justify-center w-8 h-8 rounded bg-[#2d3748] border border-[#2d3748] text-slate-300 text-xs font-bold">ISO</span>
+                <span
+                    class="inline-flex items-center justify-center w-8 h-8 rounded bg-[#2d3748] border border-[#2d3748] text-slate-300 text-xs font-bold">API</span>
+                <span
+                    class="inline-flex items-center justify-center w-8 h-8 rounded bg-[#2d3748] border border-[#2d3748] text-slate-300 text-xs font-bold">CE</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Basic sticky header styling adjustment on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+    </script>
+    <!-- Enquiry Popup Modal -->
+    <div id="enquiry-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="modal-backdrop"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white w-[90%] max-w-lg rounded-2xl p-8 premium-shadow transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="modal-content">
+            <button id="close-modal" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-secondary hover:bg-slate-200 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+            
+            <h3 class="font-headline-sm text-primary mb-2">Request a Quote</h3>
+            <p class="font-body-md text-secondary mb-6">Connect with our engineering team for custom pricing.</p>
+            
+            <form class="space-y-4" id="popup-enquiry-form">
+                <div>
+                    <label class="block font-label-bold text-on-surface mb-1 text-sm">Name</label>
+                    <input id="popup-name" class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-3 py-2 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none" placeholder="John Doe" type="text" required>
+                </div>
+                <div>
+                    <label class="block font-label-bold text-on-surface mb-1 text-sm">Phone Number</label>
+                    <input id="popup-phone" class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-3 py-2 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none" placeholder="9831413090" type="tel" required>
+                </div>
+                <div>
+                    <label class="block font-label-bold text-on-surface mb-1 text-sm">Email Address</label>
+                    <input id="popup-email" class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-3 py-2 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none" placeholder="john@company.com" type="email" required>
+                </div>
+                <div>
+                    <label class="block font-label-bold text-on-surface mb-1 text-sm">Message</label>
+                    <textarea id="popup-message" class="w-full bg-surface-bright border border-slate-200/80 rounded-DEFAULT px-3 py-2 focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none resize-none" placeholder="Tell us about your requirements..." rows="3" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-br from-slate-900 to-slate-800 text-white py-3 rounded-DEFAULT font-label-bold hover:bg-opacity-90 transition-all flex items-center justify-center gap-2 mt-2">
+                    Submit Enquiry <span class="material-symbols-outlined text-sm">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        (() => {
+            const form = document.getElementById('popup-enquiry-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const newEq = {
+                        name: document.getElementById('popup-name').value,
+                        phone: document.getElementById('popup-phone').value,
+                        email: document.getElementById('popup-email').value,
+                        message: document.getElementById('popup-message').value,
+                        product: "Not specified (Popup)"
+                    };
+                    
+                    fetch('http://localhost:8080/api/enquiries', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newEq)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        const messageText = `*New Enquiry (Popup)*\nName: ${newEq.name}\nPhone: ${newEq.phone}\nEmail: ${newEq.email}\nMessage: ${newEq.message}`;
+                        window.location.href = `https://wa.me/919831413090?text=${encodeURIComponent(messageText)}`;
+                        form.reset();
+                        document.getElementById('close-modal').click();
+                    })
+                    .catch(err => {
+                        console.error('Error submitting enquiry:', err);
+                        alert('There was an error submitting your request. Please try again.');
+                    });
+                });
+            }
+        })();
+    </script>
+
+    <script>
+        // Modal Logic
+        (() => {
+            const modal = document.getElementById('enquiry-modal');
+            const backdrop = document.getElementById('modal-backdrop');
+            const closeBtn = document.getElementById('close-modal');
+            const content = document.getElementById('modal-content');
+
+            const openModal = () => {
+                modal.classList.remove('hidden');
+                // Small delay to allow display:block to apply before animating opacity
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }, 10);
+            };
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            };
+
+            // Trigger after 2.5 seconds if not shown before
+            if (!localStorage.getItem('popupShown')) {
+                setTimeout(() => {
+                    openModal();
+                    localStorage.setItem('popupShown', 'true');
+                }, 2500);
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            backdrop.addEventListener('click', closeModal);
+        })();
+    </script>
+    <script src="cms.js"></script>
+</body>
+
+
+</html>

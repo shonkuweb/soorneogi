@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SNC | Admin Login</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0f172a",
+                        secondary: "#475569",
+                        tertiary: "#f59e0b",
+                        background: "#f8fafc",
+                        surface: "#ffffff",
+                    },
+                    fontFamily: {
+                        display: ["Outfit", "sans-serif"],
+                        body: ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 40px -15px rgba(0,0,0,0.1), 0 0 20px 0 rgba(0,0,0,0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-image: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden font-body antialiased min-h-screen flex items-center justify-center p-6">
+
+    <div class="glass-panel rounded-2xl shadow-premium max-w-md w-full p-10 transform transition-all duration-300 hover:scale-[1.01]">
+        
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-slate-900/20">
+                <span class="material-symbols-outlined text-tertiary text-3xl">admin_panel_settings</span>
+            </div>
+            <h1 class="font-display font-bold text-3xl text-primary mb-2">Secure Portal</h1>
+            <p class="text-secondary text-sm">Please log in to access the SNC control panel.</p>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+            <div id="error-alert" class="hidden bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm font-medium border border-red-100 flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">error</span>
+                <span id="error-msg">Invalid credentials</span>
+            </div>
+
+            <div>
+                <label class="block font-semibold text-primary text-sm mb-2" for="username">Username</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-3 text-slate-400 text-[20px]">person</span>
+                    <input type="text" id="username" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all" placeholder="Enter username" required>
+                </div>
+            </div>
+            
+            <div>
+                <label class="block font-semibold text-primary text-sm mb-2" for="password">Password</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-3 text-slate-400 text-[20px]">lock</span>
+                    <input type="password" id="password" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tertiary focus:border-tertiary outline-none transition-all" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-primary to-slate-800 text-white font-bold py-4 rounded-xl hover:from-slate-800 hover:to-primary transition-all shadow-lg flex items-center justify-center gap-2">
+                Sign In
+                <span class="material-symbols-outlined text-[18px]">login</span>
+            </button>
+        </form>
+
+        <div class="mt-8 text-center">
+            <a href="index.html" class="text-sm font-medium text-slate-500 hover:text-primary transition-colors flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">arrow_back</span> Return to Website
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            const errAlert = document.getElementById('error-alert');
+            const errMsg = document.getElementById('error-msg');
+            
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Authenticating...';
+            btn.disabled = true;
+            errAlert.classList.add('hidden');
+
+            const payload = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            };
+
+            fetch('http://localhost:8080/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json().then(data => ({ status: res.status, body: data })))
+            .then(res => {
+                if (res.status === 200) {
+                    // Save JWT token
+                    localStorage.setItem('snc_admin_token', res.body.token);
+                    // Redirect to admin panel
+                    window.location.href = 'admin.html';
+                } else {
+                    throw new Error(res.body.error || 'Authentication failed');
+                }
+            })
+            .catch(err => {
+                errMsg.textContent = err.message;
+                errAlert.classList.remove('hidden');
+                btn.innerHTML = 'Sign In <span class="material-symbols-outlined text-[18px]">login</span>';
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

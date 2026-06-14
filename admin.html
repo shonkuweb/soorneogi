@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SNC | Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0f172a",
+                        secondary: "#475569",
+                        tertiary: "#f59e0b",
+                        background: "#f8fafc",
+                        surface: "#ffffff",
+                    },
+                    fontFamily: {
+                        display: ["Outfit", "sans-serif"],
+                        body: ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 40px -15px rgba(0,0,0,0.05), 0 0 20px 0 rgba(0,0,0,0.02)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .nav-link.active {
+            background-color: #f59e0b;
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body class="overflow-x-hidden bg-background text-primary font-body antialiased min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-primary text-white flex flex-col fixed inset-y-0 shadow-2xl z-50">
+        <div class="p-6 border-b border-slate-700">
+            <h1 class="font-display font-bold text-2xl flex items-center gap-2">
+                <span class="material-symbols-outlined text-tertiary">admin_panel_settings</span>
+                SNC Admin
+            </h1>
+            <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Control Panel</p>
+        </div>
+        <nav class="flex-1 p-4 flex flex-col gap-2">
+            <a href="#" onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-link active flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span> Dashboard
+            </a>
+            <a href="#" onclick="switchTab('enquiries')" id="nav-enquiries" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">inbox</span> Enquiries
+                <span id="enquiry-badge" class="ml-auto bg-slate-800 text-white text-xs font-bold px-2 py-0.5 rounded-full border border-slate-600">0</span>
+            </a>
+            <a href="#" onclick="switchTab('cms')" id="nav-cms" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">edit_document</span> CMS / Content
+            </a>
+            <a href="#" onclick="switchTab('products')" id="nav-products" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">inventory</span> Products
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-700 space-y-2">
+            <a href="index.html" class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-slate-800 rounded text-sm hover:bg-slate-700 transition-colors">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span> View Live Site
+            </a>
+            <button onclick="logout()" class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-red-900/50 text-red-200 rounded text-sm hover:bg-red-800 transition-colors">
+                <span class="material-symbols-outlined text-[18px]">logout</span> Sign Out
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64 p-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="font-display text-3xl font-bold" id="page-title">Dashboard</h2>
+                <p class="text-secondary mt-1" id="page-subtitle">Overview of your website operations.</p>
+            </div>
+            <div class="h-10 w-10 rounded-full bg-slate-200 flex items-center justify-center text-primary font-bold border-2 border-white shadow-sm">
+                A
+            </div>
+        </header>
+
+        <!-- DASHBOARD VIEW -->
+        <section id="view-dashboard" class="view-section active">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-surface p-6 rounded-xl shadow-premium border border-slate-100 flex items-center gap-4">
+                    <div class="h-12 w-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <span class="material-symbols-outlined">mark_email_unread</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-secondary">Total Enquiries</p>
+                        <p class="text-2xl font-display font-bold" id="stat-total">0</p>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-xl shadow-premium border border-slate-100 flex items-center gap-4">
+                    <div class="h-12 w-12 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
+                        <span class="material-symbols-outlined">trending_up</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-secondary">New Today</p>
+                        <p class="text-2xl font-display font-bold" id="stat-today">0</p>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-xl shadow-premium border border-slate-100 flex items-center gap-4">
+                    <div class="h-12 w-12 rounded-full bg-amber-50 text-tertiary flex items-center justify-center">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-secondary">Total Products</p>
+                        <p class="text-2xl font-display font-bold" id="stat-products">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-surface p-8 rounded-xl shadow-premium border border-slate-100 text-center">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF-XiQmcThBlT4IfVz-N2XrE1vE-m06Avgnz9149xtN-HUFEXWQ52qVnPxJR2ARytAErB7XGtlaXAqVsWovV8qCDr6U5Zu1F5qEu7fzfXWEm1iog_QbFicXOc2Rd-WwbQt0ojC2L9pcHVIKuQwdQF2gbxgrBdWfFgclSRLlx-UBCpLScDO3xNaY14MF9l5hiMqVy64nLFKfoS-LKm4nku3vN3mJVrm9pCBHNKSBYlBJLGYyYAzhighE4HJLtA4qqPMy0L7xDnBRVb3" class="h-48 mx-auto mb-4" alt="Welcome">
+                <h3 class="text-xl font-display font-bold">Welcome to SNC Admin Panel</h3>
+                <p class="text-secondary mt-2">Navigate using the sidebar to manage your content, products, and incoming quotes.</p>
+            </div>
+        </section>
+
+        <!-- ENQUIRIES VIEW -->
+        <section id="view-enquiries" class="view-section">
+            <div class="bg-surface rounded-xl shadow-premium border border-slate-100 overflow-hidden">
+                <div class="flex justify-between items-center p-6 border-b border-slate-100 bg-slate-50/50">
+                    <h3 class="font-display font-semibold text-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined text-slate-400">list_alt</span> Inbox
+                    </h3>
+                    <button onclick="clearEnquiries()" class="text-sm flex items-center gap-1 text-red-500 hover:text-red-700 font-medium transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">delete</span> Clear All
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-secondary">
+                                <th class="p-4 font-semibold w-24">Date</th>
+                                <th class="p-4 font-semibold">Contact Details</th>
+                                <th class="p-4 font-semibold">Source / Product</th>
+                                <th class="p-4 font-semibold w-1/3">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="enquiry-tbody" class="divide-y divide-slate-100 text-sm">
+                            <tr><td colspan="4" class="p-8 text-center text-slate-400">Loading enquiries...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CMS VIEW -->
+        <section id="view-cms" class="view-section">
+            <div class="bg-surface p-8 rounded-xl shadow-premium border border-slate-100 max-w-4xl">
+                <h3 class="font-display font-semibold text-xl mb-6 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-tertiary">edit_note</span> Edit Website Content
+                </h3>
+                
+                <div class="mb-8">
+                    <label class="block font-semibold text-sm mb-2 text-secondary">Select Page to Edit</label>
+                    <select id="cms-page-select" onchange="renderCmsForm()" class="w-full max-w-xs border-slate-200 rounded-lg focus:ring-tertiary focus:border-tertiary bg-slate-50">
+                        <option value="home">Home Page</option>
+                        <option value="about">About Us</option>
+                        <option value="products">Products</option>
+                        <option value="clientele">Clientele</option>
+                        <option value="achievements">Achievements</option>
+                        <option value="gallery">Gallery</option>
+                        <option value="enquiry">Enquiry</option>
+                    </select>
+                </div>
+
+                <form id="cms-form" class="space-y-6">
+                    <!-- Dynamic fields will be injected here -->
+                </form>
+                
+                <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+                    <p class="text-xs text-slate-400">Changes are saved instantly to the live site. <br> Use HTML tags like &lt;br&gt; for line breaks or &lt;b&gt; for bold.</p>
+                    <button type="button" onclick="saveCMS()" class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors shadow-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">save</span> Save Changes
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS VIEW -->
+        <section id="view-products" class="view-section">
+            <div class="bg-surface rounded-xl shadow-premium border border-slate-100 overflow-hidden mb-6 hidden" id="add-product-form-container">
+                <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                    <h3 class="font-display font-semibold text-lg">Add New Product</h3>
+                    <button onclick="toggleAddProductForm()" class="text-slate-400 hover:text-slate-600">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <form id="add-product-form" onsubmit="addProduct(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Product Name</label>
+                                <input type="text" id="prod-name" required class="w-full border-slate-300 rounded-lg focus:ring-tertiary focus:border-tertiary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Category</label>
+                                <input type="text" id="prod-category" required class="w-full border-slate-300 rounded-lg focus:ring-tertiary focus:border-tertiary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Price / Info</label>
+                                <input type="text" id="prod-price" class="w-full border-slate-300 rounded-lg focus:ring-tertiary focus:border-tertiary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Status</label>
+                                <select id="prod-status" class="w-full border-slate-300 rounded-lg focus:ring-tertiary focus:border-tertiary">
+                                    <option value="Active">Active</option>
+                                    <option value="Draft">Draft</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex justify-end pt-2">
+                            <button type="submit" class="bg-tertiary text-primary px-6 py-2 rounded-lg font-semibold hover:bg-amber-400 transition-colors">
+                                Save Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bg-surface rounded-xl shadow-premium border border-slate-100 overflow-hidden">
+                <div class="flex justify-between items-center p-6 border-b border-slate-100 bg-slate-50/50">
+                    <h3 class="font-display font-semibold text-lg">Product Inventory</h3>
+                    <button onclick="toggleAddProductForm()" class="text-sm bg-tertiary text-primary px-4 py-2 rounded font-semibold hover:bg-amber-400 transition-colors flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">add</span> Add Product
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-secondary">
+                                <th class="p-4 font-semibold">Name</th>
+                                <th class="p-4 font-semibold">Category</th>
+                                <th class="p-4 font-semibold">Price</th>
+                                <th class="p-4 font-semibold">Status</th>
+                                <th class="p-4 font-semibold text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-tbody" class="divide-y divide-slate-100 text-sm">
+                            <tr><td colspan="5" class="p-8 text-center text-slate-400">Loading products...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- JWT Authentication Check ---
+        const token = localStorage.getItem('snc_admin_token');
+        if (!token) {
+            window.location.href = 'login.html'; // Redirect to login if no token
+        }
+
+        const API_URL = 'http://localhost:8080/api';
+        
+        const fetchOptions = (method = 'GET', body = null) => {
+            const opts = {
+                method,
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            if (body) {
+                opts.headers['Content-Type'] = 'application/json';
+                opts.body = JSON.stringify(body);
+            }
+            return opts;
+        };
+
+        const handleAuthError = (res) => {
+            if (res.status === 401 || res.status === 403) {
+                localStorage.removeItem('snc_admin_token');
+                window.location.href = 'login.html';
+                throw new Error('Authentication failed. Please log in again.');
+            }
+            return res.json();
+        };
+
+        function logout() {
+            localStorage.removeItem('snc_admin_token');
+            window.location.href = 'login.html';
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active', 'text-primary'));
+            
+            document.getElementById(`view-${tabId}`).classList.add('active');
+            const navBtn = document.getElementById(`nav-${tabId}`);
+            navBtn.classList.add('active');
+            
+            const titles = {
+                'dashboard': ['Dashboard', 'Overview of your website operations.'],
+                'enquiries': ['Enquiries Overview', 'Manage incoming quote requests.'],
+                'cms': ['Content Management', 'Update text dynamically on the live site.'],
+                'products': ['Products', 'Manage inventory catalogue.']
+            };
+            
+            document.getElementById('page-title').textContent = titles[tabId][0];
+            document.getElementById('page-subtitle').textContent = titles[tabId][1];
+
+            if(tabId === 'dashboard') loadStats();
+            if(tabId === 'enquiries') loadEnquiries();
+            if(tabId === 'cms') loadCMS();
+            if(tabId === 'products') loadProducts();
+        }
+
+        // Fetch Stats
+        function loadStats() {
+            fetch(`${API_URL}/stats`, fetchOptions())
+                .then(handleAuthError)
+                .then(data => {
+                    document.getElementById('stat-total').textContent = data.enquiries;
+                    document.getElementById('stat-today').textContent = data.today;
+                    document.getElementById('stat-products').textContent = data.products;
+                    document.getElementById('enquiry-badge').textContent = data.enquiries;
+                })
+                .catch(console.error);
+        }
+
+        // Fetch Enquiries
+        function loadEnquiries() {
+            fetch(`${API_URL}/enquiries`, fetchOptions())
+                .then(handleAuthError)
+                .then(enquiries => {
+                    const tbody = document.getElementById('enquiry-tbody');
+                    if(enquiries.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-slate-400">No enquiries found.</td></tr>`;
+                        return;
+                    }
+                    
+                    let html = '';
+                    enquiries.forEach(eq => {
+                        const date = new Date(eq.timestamp);
+                        const timeStr = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        const dateStr = date.toLocaleDateString([], {month:'short', day:'numeric'});
+                        
+                        html += `
+                        <tr class="hover:bg-slate-50/80 transition-colors group">
+                            <td class="p-4 align-top">
+                                <div class="font-semibold text-primary">${dateStr}</div>
+                                <div class="text-xs text-secondary mt-1">${timeStr}</div>
+                            </td>
+                            <td class="p-4 align-top">
+                                <div class="font-bold text-primary">${escapeHtml(eq.name)}</div>
+                                <div class="mt-2 text-xs flex flex-col gap-1">
+                                    <a href="mailto:${escapeHtml(eq.email)}" class="text-blue-600 hover:underline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">mail</span> ${escapeHtml(eq.email)}</a>
+                                    <a href="tel:${escapeHtml(eq.phone)}" class="text-secondary hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">call</span> ${escapeHtml(eq.phone)}</a>
+                                </div>
+                            </td>
+                            <td class="p-4 align-top">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+                                    ${escapeHtml(eq.product)}
+                                </span>
+                            </td>
+                            <td class="p-4 align-top">
+                                <div class="text-secondary text-sm">${escapeHtml(eq.message)}</div>
+                            </td>
+                        </tr>
+                        `;
+                    });
+                    tbody.innerHTML = html;
+                })
+                .catch(console.error);
+        }
+
+        function clearEnquiries() {
+            if(confirm("Delete all enquiries permanently?")) {
+                fetch(`${API_URL}/enquiries`, {method: 'DELETE'})
+                    .then(() => loadEnquiries())
+                    .then(() => loadStats());
+            }
+        }
+
+        let cmsData = {};
+
+        const cmsSchema = {
+            home: [
+                { id: 'index_hero_title', label: 'Hero Title', type: 'textarea' },
+                { id: 'index_hero_subtitle', label: 'Hero Subtitle', type: 'textarea' },
+                { id: 'index_about_title', label: 'About Us Section Title', type: 'text' },
+                { id: 'index_about_text', label: 'About Us Section Text', type: 'textarea' }
+            ],
+            about: [
+                { id: 'about_hero_title', label: 'Page Title', type: 'text' },
+                { id: 'about_hero_subtitle', label: 'Page Subtitle', type: 'textarea' },
+                { id: 'about_mission_title', label: 'Mission Title', type: 'text' },
+                { id: 'about_mission_text', label: 'Mission Description', type: 'textarea' }
+            ],
+            products: [
+                { id: 'products_hero_title', label: 'Page Title', type: 'text' },
+                { id: 'products_hero_subtitle', label: 'Page Subtitle', type: 'textarea' }
+            ],
+            clientele: [
+                { id: 'clientele_hero_title', label: 'Page Title', type: 'text' },
+                { id: 'clientele_hero_subtitle', label: 'Page Subtitle', type: 'textarea' }
+            ],
+            achievements: [
+                { id: 'achievements_hero_title', label: 'Page Title', type: 'text' },
+                { id: 'achievements_hero_subtitle', label: 'Page Subtitle', type: 'textarea' }
+            ],
+            gallery: [
+                { id: 'gallery_hero_title', label: 'Page Title', type: 'text' },
+                { id: 'gallery_hero_subtitle', label: 'Page Subtitle', type: 'textarea' }
+            ],
+            enquiry: [
+                { id: 'enquiry_hero_title', label: 'Page Title', type: 'text' },
+                { id: 'enquiry_hero_subtitle', label: 'Page Subtitle', type: 'textarea' }
+            ]
+        };
+
+        // Fetch CMS Content
+        function loadCMS() {
+            fetch(`${API_URL}/content`)
+                .then(r => r.json())
+                .then(data => {
+                    cmsData = data;
+                    renderCmsForm();
+                });
+        }
+
+        function renderCmsForm() {
+            const page = document.getElementById('cms-page-select').value;
+            const schema = cmsSchema[page] || [];
+            const form = document.getElementById('cms-form');
+            
+            form.innerHTML = '';
+            
+            if (schema.length === 0) {
+                form.innerHTML = '<p class="text-secondary italic">No editable fields configured for this page yet.</p>';
+                return;
+            }
+
+            let html = '';
+            schema.forEach(field => {
+                const value = cmsData[field.id] || '';
+                html += `<div class="bg-slate-50/50 p-4 rounded-lg border border-slate-100">
+                    <label class="block font-semibold text-sm mb-2 text-primary">${field.label}</label>
+                `;
+                
+                if (field.type === 'textarea') {
+                    html += `<textarea id="cms_${field.id}" rows="3" class="w-full border-slate-200 rounded-lg focus:ring-tertiary focus:border-tertiary">${value}</textarea>`;
+                } else {
+                    html += `<input type="text" id="cms_${field.id}" value="${value.replace(/"/g, '&quot;')}" class="w-full border-slate-200 rounded-lg focus:ring-tertiary focus:border-tertiary">`;
+                }
+                
+                html += `<p class="text-xs text-slate-400 mt-2 font-mono bg-slate-100 inline-block px-1 rounded">Key: ${field.id}</p></div>`;
+            });
+            
+            form.innerHTML = html;
+        }
+
+        function saveCMS() {
+            const page = document.getElementById('cms-page-select').value;
+            const schema = cmsSchema[page] || [];
+            
+            const dataToSave = {};
+            schema.forEach(field => {
+                const el = document.getElementById(`cms_${field.id}`);
+                if (el) {
+                    dataToSave[field.id] = el.value;
+                    cmsData[field.id] = el.value; // update local cache
+                }
+            });
+            
+            fetch(`${API_URL}/content`, fetchOptions('POST', dataToSave))
+                .then(handleAuthError)
+                .then(() => alert("Website Content Updated Successfully! Refresh the live site to see changes."))
+                .catch(err => alert(err.message));
+        }
+
+        function escapeHtml(unsafe) {
+            return (unsafe || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // --- Products Functions ---
+        function toggleAddProductForm() {
+            const formContainer = document.getElementById('add-product-form-container');
+            formContainer.classList.toggle('hidden');
+        }
+
+        function loadProducts() {
+            fetch(`${API_URL}/products`) // Public endpoint but used here
+                .then(r => r.json())
+                .then(products => {
+                    const tbody = document.getElementById('products-tbody');
+                    if(products.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-slate-400">No products found. Add your first product!</td></tr>`;
+                        return;
+                    }
+                    
+                    let html = '';
+                    products.forEach(p => {
+                        html += `
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="p-4 font-medium text-primary">${escapeHtml(p.name)}</td>
+                            <td class="p-4 text-secondary">${escapeHtml(p.category)}</td>
+                            <td class="p-4 text-secondary">${escapeHtml(p.price) || '-'}</td>
+                            <td class="p-4">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${p.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800'}">
+                                    ${escapeHtml(p.status)}
+                                </span>
+                            </td>
+                            <td class="p-4 text-right">
+                                <button onclick="deleteProduct(${p.id})" class="text-red-500 hover:text-red-700 transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        `;
+                    });
+                    tbody.innerHTML = html;
+                })
+                .catch(console.error);
+        }
+
+        function addProduct(e) {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('prod-name').value,
+                category: document.getElementById('prod-category').value,
+                price: document.getElementById('prod-price').value,
+                status: document.getElementById('prod-status').value
+            };
+
+            fetch(`${API_URL}/products`, fetchOptions('POST', payload))
+                .then(handleAuthError)
+                .then(res => {
+                    if(res.status === 'success') {
+                        document.getElementById('add-product-form').reset();
+                        toggleAddProductForm();
+                        loadProducts();
+                        loadStats();
+                    }
+                })
+                .catch(err => alert(err.message));
+        }
+
+        function deleteProduct(id) {
+            if(confirm('Are you sure you want to delete this product?')) {
+                fetch(`${API_URL}/products/${id}`, fetchOptions('DELETE'))
+                    .then(handleAuthError)
+                    .then(res => {
+                        if(res.status === 'success') {
+                            loadProducts();
+                            loadStats();
+                        }
+                    })
+                    .catch(err => alert(err.message));
+            }
+        }
+
+        // Init
+        loadStats();
+    </script>
+</body>
+</html>
